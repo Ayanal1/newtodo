@@ -208,8 +208,7 @@ function signinFB(){
     // This gives you a Google Access Token. You can use it to access the Google API.
     var token = credential.accessToken;
     // The signed-in user info.
-    var user = result.user;
-   localStorage.setItem('User_Uid',val.user.uid)
+    var user = result.user
     window.location.replace("index.html")
     // // ...
 }).catch((error) => {

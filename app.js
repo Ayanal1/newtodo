@@ -209,10 +209,11 @@ function signinFB(){
     var token = credential.accessToken;
     // The signed-in user info.
     var user = result.user;
-    alert("done")
+   localStorage.setItem('User_Uid',val.user.uid)
+    window.location.replace("index.html")
     // // ...
 }).catch((error) => {
-      alert("not done")
+      
     // Handle Errors here.
     var errorCode = error.code;
     var errorMessage = error.message;

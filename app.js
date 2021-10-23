@@ -1,20 +1,6 @@
-// if(localStorage.getItem('User_Uid')){
-//     window.location.replace("index.html")
-//     // preventDefault()
-    
-// }
-// else{
-//     window.location.replace("login.html")
-//     // preventDefault()
-
-// }
 
 
-
-var uid= localStorage.getItem('User_Uid')
-console.log(uid)
-
-firebase.database().ref('/USERers/').child(uid).child(`LIST`).on('child_added',function(smit){
+firebase.database().ref('/USER/').on('child_added',function(smit){
     var data = smit.val()
     
 
@@ -100,7 +86,7 @@ function add_todo(){
                 key : NEW, 
             }
             
-            firebase.database().ref(`/USERers/`).child(uid).child(`LIST`).child(NEW).set(obj)
+            firebase.database().ref(`/USER/`+NEW).set(obj)
             
             
             
@@ -145,7 +131,6 @@ console.log(firebase.auth)
 function signup(){
     var email = document.getElementById('email').value
     var password = document.getElementById("password").value
-    var name = document.getElementById("name").value
 
     console.log(email,password)
     firebase.auth().createUserWithEmailAndPassword(email,password)
@@ -156,7 +141,6 @@ function signup(){
         // console.log(val.user.password)
 
         var obas={
-            name: name,
             email: val.user.email,
             password: password,
             uid: val.user.uid
@@ -210,10 +194,9 @@ function home(){
    console.log(uid)
     firebase.database().ref(`/USERers`).child(uid).once('value', function(my){
         console.log(my.val())
-        name.innerText = "Welcome "+my.val().name
+        name.innerText = my.val().email
     })
 }
-
 
 function signinFB(){
     var provider = new firebase.auth.GoogleAuthProvider();
@@ -240,7 +223,5 @@ function signinFB(){
     // ...
   });
 
-
-}
 
 }

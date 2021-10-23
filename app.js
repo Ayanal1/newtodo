@@ -215,25 +215,21 @@ function home(){
 }
 
 
-function fblogin(){
-
-
-    var provider = new firebase.auth.FacebookAuthProvider();
-
+function signinFB(){
+    var provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider)
-  .then((result) => {
+    .then((result) => {
     /** @type {firebase.auth.OAuthCredential} */
     var credential = result.credential;
 
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    var token = credential.accessToken;
     // The signed-in user info.
     var user = result.user;
-
-    // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-    var accessToken = credential.accessToken;
-
-    // ...
-  })
-  .catch((error) => {
+    alert("done")
+    // // ...
+}).catch((error) => {
+      alert("not done")
     // Handle Errors here.
     var errorCode = error.code;
     var errorMessage = error.message;
@@ -241,8 +237,10 @@ function fblogin(){
     var email = error.email;
     // The firebase.auth.AuthCredential type that was used.
     var credential = error.credential;
-
     // ...
   });
+
+
+}
 
 }
